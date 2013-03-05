@@ -1,0 +1,15 @@
+body {
+  background: #EEE;
+  font-family: arial, helvetica, sans-serif;
+}
+
+#game {
+  float: left;
+  border: solid 4px #0099FF;
+}
+
+#debug{
+  float: left;
+  margin: 0 10px;
+}
+

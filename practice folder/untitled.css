@@ -1,0 +1,59 @@
+/*
+Syntax error: Invalid CSS after "370px": expected expression (e.g. 1px, bold), was ";"
+        on line 7 of untitled.sass
+
+2: 
+3: Name: cmxform Styles
+4: 
+5: ***********************************/
+6: form.cmxform {
+7: 	width: 370px;
+8: 	font-size: 1.0em;
+9: 	color: #333;
+10: }
+11: 
+12: form.cmxform legend {
+
+Backtrace:
+untitled.sass:7
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/scss/parser.rb:1014:in `expected'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/script/lexer.rb:191:in `expected!'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/script/parser.rb:465:in `assert_done'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/script/parser.rb:50:in `parse'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/script/parser.rb:140:in `parse'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/script.rb:31:in `parse'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:831:in `parse_script'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:592:in `parse_property'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:581:in `parse_property_or_rule'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:562:in `parse_line'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:455:in `build_tree'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:474:in `block in append_children'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:473:in `each'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:473:in `append_children'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:464:in `block in build_tree'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:457:in `each'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:457:in `build_tree'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:474:in `block in append_children'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:473:in `each'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:473:in `append_children'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:329:in `_to_tree'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:299:in `_render'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/engine.rb:246:in `render'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:332:in `update_stylesheet'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:201:in `each'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/plugin/compiler.rb:235:in `watch'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/plugin.rb:107:in `method_missing'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/exec.rb:431:in `watch_or_update'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/exec.rb:302:in `process_result'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/exec.rb:41:in `parse'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/lib/sass/exec.rb:21:in `parse!'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/gems/sass-3.1.16/bin/sass:8:in `<top (required)>'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/bin/sass:19:in `load'
+/Users/sprout/.rvm/gems/ruby-1.9.3-p0/bin/sass:19:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"370px\": expected expression (e.g. 1px, bold), was \";\"\A         on line 7 of untitled.sass\A \A 2: \A 3: Name: cmxform Styles\A 4: \A 5: ***********************************/\A 6: form.cmxform {\A 7: 	width: 370px;\A 8: 	font-size: 1.0em;\A 9: 	color: #333;\A 10: }\A 11: \A 12: form.cmxform legend {"; }

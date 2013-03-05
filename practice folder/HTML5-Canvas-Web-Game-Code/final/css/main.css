@@ -1,0 +1,9 @@
+body {
+  background: #EEE;
+  font-family: arial, helvetica, sans-serif;
+}
+
+.credit {
+  display: block;
+  font-size: 0.8em;
+}

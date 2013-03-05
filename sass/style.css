@@ -1,0 +1,5 @@
+
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"auto\": expected expression (e.g. 1px, bold), was \";\"\A         on line 2 of 1st_sass.sass\A \A 1: #body{\A 2: 	height: auto;\A 3: 	width: 900px;\A 4: }\A 5: \A 6: \A 7: #nav{"; }
