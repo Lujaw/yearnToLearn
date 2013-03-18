@@ -1,5 +1,4 @@
-(function($)
-{
+
 
   var contacts = [
   {
@@ -74,7 +73,7 @@
     template: $("#contactTemplate").html(),
     render: function()
     {
-      console.log("contact view initialized");
+      // console.log("contact view initialized");
       var tmpl = _.template(this.template);
       this.$el.html(tmpl(this.model.toJSON()));
       return this;
@@ -86,23 +85,27 @@
     el: $("#contacts"),
     initialize: function()
     {
-      console.log("view initialized");
       this.collection = new Directory(contacts);
-      // console.log(this.collection);
+      console.log(this.collection);
       this.$el.find("#filter").append(this.createSelect());
+      this.on("change:filterType", this.filterByType, this);
+      this.collection.on("reset", this.render, this);
       this.render();
     },
 
     render: function()
     {
+      // console.log("render triggered");
+      // console.log(this.collection);
       var that = this;
-      _.each(this.collection.models, function(item)
+      _.each(that.collection.models, function(item)
       {
         that.renderContact(item);
       }, this);
     },
     renderContact: function(item)
     {
+      // console.log("render contact initialized");
       var contactView = new ContactView(
       {
         model: item
@@ -119,7 +122,7 @@
 
     createSelect: function()
     {
-      console.log("select called");
+      // console.log("select called");
       var filter = this.$el.find("#filter"),
         select = $("<select/>", {
           html: "<option>All</option>"
@@ -133,9 +136,32 @@
         }).appendTo(select);
       });
       return select;
-    }
+    },
+
+    events:{
+      "change #filter select": "setFilter"
+    },
+
+    setFilter: function (e){
+      this.filterType = e.currentTarget.value;
+      this.trigger("change:filterType");
+    },
+
+    filterByType: function(){
+      if( this.filterType === "all") {
+        this.collection.reset(contacts);
+      }
+      else{
+        this.collection.reset(contacts, {silent: true});
+        var filterType = this.filterType;
+        filtered =_.filter( this.collection.models, function (item){
+          return item.get("type").toLowerCase() == filterType ;
+        });
+        this.collection.reset(filtered);
+      }
+      }
+
   });
 
   var directory = new DirectoryView();
-  // console.log("reached here");
-}(jQuery));
+
