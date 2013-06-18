@@ -33,64 +33,109 @@
 </script>
   <script src="http://staticcf.s3.amazonaws.com/wi_js.js" type="text/javascript"> </script>
 
-<script id="canvasControls" type="text/javascript">
-  jQuery(document).ready(function() {
+// <script id="canvasControls" type="text/javascript">
+//   jQuery(document).ready(function() {
 
-   // init facebox
-   jQuery('a[rel*=facebox]').facebox();
-
-
+//    // init facebox
+//    jQuery('a[rel*=facebox]').facebox();
 
 
 
-    var canvas = document.getElementById('mycanvas');
-    var context = canvas.getContext('2d');
-    var imgObj = new Image();
-    var origin = {
-      x: 0,
-      y : 0
-    }
-    var width = 200;
-    var height = 200;
-
-    var sources = {
-      CloudFactory : "https://si0.twimg.com/profile_images/1883520356/CloudFactory.png",
-      yoda : "http://www.merojob.com/uploads/employers/Sprout-25-7-2011-15-07-30Sprout%20Logo.jpg"
-    }
 
 
-    loadImages(sources, function(images){
-      context.drawImage(images.CloudFactory, 0 ,0 , 200, 200);
-      context.drawImage(images.yoda, 220 ,0 , 200, 200);
-    })
+//     var canvas = document.getElementById('mycanvas');
+//     var context = canvas.getContext('2d');
+//     var imgObj = new Image();
+//     var origin = {
+//       x: 0,
+//       y : 0
+//     }
+//     var width = 200;
+//     var height = 200;
 
-    // imgObj.onload =  function(){
-    //   context.drawImage(imgObj, origin.x, origin.y ,width ,height);
-    // };
-    // imgObj.src = "https://si0.twimg.com/profile_images/1883520356/CloudFactory.png";
+//     var sources = {
+//       CloudFactory : "https://si0.twimg.com/profile_images/1883520356/CloudFactory.png",
+//       yoda : "http://www.merojob.com/uploads/employers/Sprout-25-7-2011-15-07-30Sprout%20Logo.jpg"
+//     }
 
+//       context.scale(-1, -1);
+//       debugger;
+//     loadImages(sources, function(images){
+//       // context.drawImage(images.CloudFactory, 0 ,0 , 200, 200);
+//       context.drawImage(images.yoda, 220 ,0 , 200, 200);
+//       // debugger;
+
+//       //flip the content of the canvas
+
+//       // translate context to center of canvas
+//       context.translate(canvas.width / 2, canvas.height / 2);
+
+//       // flip context horizontally
+
+//       context.scale(-1, -1);
+//       context.font = '30pt Calibri';
+//       context.textAlign = 'center';
+//       context.fillStyle = 'blue';
+//       context.fillText('Hello World!', 0, 0);//
+//     });
+//   });
+
+//    loadImages = function(sources, callback) {
+//     var images = {};
+//     var loadedImages = 0;
+//     var numImages = 0;
+//     //get number of images
+//     for (var src in sources) {
+//       numImages++;
+//     }
+
+//     for (var src in sources) {
+//       images[src] = new Image();
+//       images[src].onload = function() {
+//         if (++loadedImages >= numImages) {
+//           callback(images);
+//         }
+//       }
+//       images[src].src = sources[src];
+//     }
+//   }
+//   </script>
+<script id="animation">
+window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+      })();
+  var  xPosition = 0;
+  var  yPosition = 0;
+
+function animate(){
+  console.log("animation called")
+  var canvas = document.getElementById('mycanvas');
+  var context = canvas.getContext('2d');
+
+
+  //update
+
+
+  //clear
+  context.clearRect(0 ,0 , canvas.width , canvas.height);
+
+  //creating stuffs
+  context.fillRect(xPosition++, yPosition++, 10, 10)
+  debugger;
+
+  //request  newframe
+  requestAnimFrame( function (){
+    animate();
   });
+  if (xPosition > 200) return false;
+}
 
-   loadImages = function(sources, callback) {
-    var images = {};
-    var loadedImages = 0;
-    var numImages = 0;
-    //get number of images
-    for (var src in sources) {
-      numImages++;
-    }
+  animate();
 
-    for (var src in sources) {
-      images[src] = new Image();
-      images[src].onload = function() {
-        if (++loadedImages >= numImages) {
-          callback(images);
-        }
-      }
-      images[src].src = sources[src];
-    }
-  }
-
+</script>
 
 </script>
 </body>
