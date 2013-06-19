@@ -59,28 +59,33 @@
         //your javascripts here
 
         });
-        </script><script id="canvas" type="text/javascript">
-            var CANVAS_WIDTH = 480;
-   var CANVAS_HEIGHT = 320;
-   var textX = 50;
-   var textY = 50;
 
-   var canvasElement = $("<canvas width='" + CANVAS_WIDTH + "' height='" + CANVAS_HEIGHT + "'></canvas>");
-   var canvas = canvasElement.get(0).getContext("2d");
-   canvasElement.appendTo('#canvas_div');
-           // var scene = sjs.Scene({w:640, h:480});
+        </script>
+<script id="canvas" type="text/javascript">
+var CANVAS_WIDTH = 480;
+var CANVAS_HEIGHT = 320;
+var textX = 50;
+var textY = 50;
+var canvasElement = $("<canvas width='" + CANVAS_WIDTH +
+                      "' height='" + CANVAS_HEIGHT + "'></canvas>");
+var canvas = canvasElement.get(0).getContext("2d");
+canvasElement.appendTo('#canvas_div');
+
+var scene = sjs.Scene({
+    w: 640,
+    h: 480
+});
 
 
-   var FPS = 30;
-   setInterval(function() {
+var FPS = 30;
+setInterval(function() {
     update();
     draw();
-   }, 1000 / FPS);
+}, 1000 / FPS);
 
-   // debugger;
+// debugger;
 
-
-   function update() {
+function update() {
     if (keydown.left) {
         player.x -= 5;
     }
@@ -115,10 +120,11 @@
         enemies.push(Enemy());
     }
     player.shoot();
-   };
+    handleCollisions();
+};
 
 
-   function draw() {
+function draw() {
     // console.log("draw called");
     canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     player.draw();
@@ -128,9 +134,9 @@
     enemies.forEach(function(enemy) {
         enemy.draw();
     });
-   };
+};
 
-   var player = {
+var player = {
     color: "#00A",
     x: 220,
     y: 270,
@@ -155,12 +161,16 @@
             x: this.x + this.width / 2,
             y: this.y + this.height / 2
         }
+    },
+    explode : function() {
+        console.log("player exploded");
+        this.active = false;
     }
-   };
+};
 
-   var playerBullets = [];
+var playerBullets = [];
 
-   function Bullet(I) {
+function Bullet(I) {
     I.active = true;
     I.xVelocity = 0;
     I.yVelocity = -I.speed;
@@ -182,12 +192,14 @@
         I.y += I.yVelocity;
         I.active = I.active && I.inBounds();
     };
+
+
     return I
-   }
+}
 
-   enemies = [];
+enemies = [];
 
-   function Enemy(I) {
+function Enemy(I) {
     I = I || {};
     I.active = true;
     I.age = Math.floor(Math.random() + 128);
@@ -198,14 +210,25 @@
     I.xVelocity = 0;
     I.yVelocity = 2;
 
-    I.width = 32;
-    I.height = 32;
+    I.width = 32 + Math.random() * 7;
+    I.height = 32 + Math.random() * 7;
+    I.radius = 10;
     I.inBounds = function() {
         return I.x >= 0 && I.x <= CANVAS_WIDTH && I.y >= 0 && I.y <= CANVAS_HEIGHT;
     };
-    I.sprite = scene.Sprite("enemy");
+    // I.sprite = scene.Sprite("enemy");
     I.draw = function() {
-        this.sprite.draw(canvas, this.x, this.y);
+        // this.sprite.draw(canvas, this.x, this.y);
+        canvas.fillRect(I.x, I.y, I.width, I.height)
+
+        //To draw the circle
+        // canvas.beginPath();
+        // canvas.arc(I.x, I.y, I.radius, 0, 2 * Math.PI, false);
+        // canvas.fillStyle = 'green';
+        // canvas.fill();
+        // canvas.lineWidth = 5;
+        // canvas.strokeStyle = '#003300';
+        // canvas.stroke();
     }
 
     I.update = function() {
@@ -217,16 +240,47 @@
         I.age++;
 
         I.active = I.active && I.inBounds();
+
+        I.explode = function() {
+            console.log("enmy exploded")
+            this.active = false;
+        }
     };
 
     return I;
-   };
+};
 
-   player.sprite = scene.Sprite("player");
+player.sprite = scene.Sprite("player");
 
-   player.draw = function() {
-    this.sprite.draw(canvas, this.x, this.y);
-   }
+// player.draw = function() {
+//     // this.sprite.draw(canvas, this.x, this.y);
+//     canvas.fillRect
+// }
+
+
+function collides(a, b) {
+    return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
+}
+
+
+function handleCollisions() {
+    playerBullets.forEach(function(bullet) {
+        enemies.forEach(function(enemy) {
+            if (collides(bullet, enemy)) {
+                enemy.explode();
+                bullet.active = false;
+            }
+        })
+    })
+    enemies.forEach(function(enemy) {
+        if (collides(enemy, player)) {
+            enemy.explode();
+            player.explode();
+        }
+    })
+}
+
+
 
 
 
