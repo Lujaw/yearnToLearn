@@ -1,0 +1,11 @@
+/**Custom animation css **/
+
+@-webkit-keyframes blink-caret {
+	from , to { border-color: transparent }
+	50% { border-color: black }
+}
+@-moz-keyframes blink-caret {
+	from , to { border-color: transparent }
+	50% { border-color: black }
+}
+
