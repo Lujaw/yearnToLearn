@@ -3,8 +3,32 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+#main_container{
+	width: 100%  
+}
 
+#box_container{
+	width: 95%
+}
 
+.container{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	margin: 0 auto; 
+}
+.container span{
+	text-align: center;
+	display: inline-block;
+	font-size: 20px;
+	font-family: Consolas, monospace;
+	border-right: .1em solid black;	
+	/* -webkit-transition: all 17s steps(30 , end); */
+	-webkit-animation: blink-caret 1s step-end infinite;
+}
+footer p{
+	margin: 5px auto;
+}
 
 
 
