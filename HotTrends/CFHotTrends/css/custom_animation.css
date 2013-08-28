@@ -4,8 +4,8 @@
 	from , to { border-color: transparent }
 	50% { border-color: black }
 }
-@-moz-keyframes blink-caret {
-	from , to { border-color: transparent }
-	50% { border-color: black }
+@-webkit-keyframes typing {
+    from { width: 0; }
+    to { width: 200px; }
 }
 

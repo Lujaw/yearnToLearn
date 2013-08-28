@@ -17,14 +17,21 @@
 	background-color: red;
 	margin: 0 auto; 
 }
+.container span:hover {width: 16.6em;}
+
 .container span{
-	text-align: center;
-	display: inline-block;
+    width: 100px; 
+    white-space: nowrap;
 	font-size: 20px;
 	font-family: Consolas, monospace;
-	border-right: .1em solid black;	
-	/* -webkit-transition: all 17s steps(30 , end); */
+	border-right: .1em solid black;
+    /*-webkit-animation: typing 2s steps(26, end)    */
+    /*-webkit-animation-delay: 3s;	*/
+	
+    -webkit-transition: all 10s steps(30, end);
 	-webkit-animation: blink-caret 1s step-end infinite;
+	 width:0px; 	
+    overflow: hidden;
 }
 footer p{
 	margin: 5px auto;
