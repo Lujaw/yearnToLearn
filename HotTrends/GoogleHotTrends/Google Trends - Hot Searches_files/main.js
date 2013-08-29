@@ -1,22 +1,23 @@
-;(function() {
+;
+(function() {
 
   var MAX_COLS = 5,
-      FADE_DELAY = 10000,
-      FADE_DUR = 500,
-      WIPE_DELAY = Math.max(url.int('delay', 3000), 3000),
-      wipers = [],
-      termsByRegion,
-      terms,
-      termIndex = 0,
-      now,
-      lastUpdate,
-      idleTimeout, 
-      matrixInitialized = false,
-      matrix,
-      matrixSelect, 
-      rows,
-      cols,
-      pipe;
+    FADE_DELAY = 10000,
+    FADE_DUR = 500,
+    WIPE_DELAY = Math.max(url.int('delay', 3000), 3000),
+    wipers = [],
+    termsByRegion,
+    terms,
+    termIndex = 0,
+    now,
+    lastUpdate,
+    idleTimeout,
+    matrixInitialized = false,
+    matrix,
+    matrixSelect,
+    rows,
+    cols,
+    pipe;
 
 
   init();
@@ -34,9 +35,9 @@
   function getTerms(callback) {
 
     // if (url.terms) {
-      // callback({ 0: JSON.parse(url.terms) });
+    // callback({ 0: JSON.parse(url.terms) });
     // } else { 
-      $.getJSON('/api/terms/', callback);
+    $.getJSON('/api/terms/', callback);
     // }
 
     setTimeout(function() {
@@ -55,7 +56,7 @@
       wipers.push(new Wiper(this));
     });
 
-    setMatrix(url.int('r', 1)-1, url.int('c', 1)-1);
+    setMatrix(url.int('r', 1) - 1, url.int('c', 1) - 1);
     setRegion(url.int('p', 0));
 
     lastUpdate = (+new Date());
@@ -74,7 +75,7 @@
 
     wiper.next = function() {
       clearTimeout(wiper.timeout);
-      wiper.show(terms[++termIndex%terms.length], delayedNext);
+      wiper.show(terms[++termIndex % terms.length], delayedNext);
     };
 
     wiper.next();
@@ -120,8 +121,8 @@
 
   function setMatrix(r, c) {
 
-    rows = Math.max(Math.min(r, MAX_COLS-1), 0);
-    cols = Math.max(Math.min(c, MAX_COLS-1), 0);
+    rows = Math.max(Math.min(r, MAX_COLS - 1), 0);
+    cols = Math.max(Math.min(c, MAX_COLS - 1), 0);
 
     $(matrix).find('.cell').each(function(k, v) {
 
@@ -133,21 +134,21 @@
         wipers[k].disabled = true;
         v.style.display = 'none';
 
-      } else { 
+      } else {
 
         // Hm.
         if (wipers[k].disabled) wipers[k].onTransitionEnd();
 
         wipers[k].disabled = false;
-        v.style.top = (row) / (rows+1) * 100 + '%';
-        v.style.left = (col) / (cols+1) * 100 + '%';
-        v.style.width = 1 / (cols+1) * 101 + '%'; // hack for 1px line that shows up
-        v.style.height = 1 / (rows+1) * 101 + '%';
+        v.style.top = (row) / (rows + 1) * 100 + '%';
+        v.style.left = (col) / (cols + 1) * 100 + '%';
+        v.style.width = 1 / (cols + 1) * 101 + '%'; // hack for 1px line that shows up
+        v.style.height = 1 / (rows + 1) * 101 + '%';
         v.style.display = 'block';
       }
 
     });
-    
+
     onResize();
     highlightRows(rows, cols, 'select');
 
@@ -157,11 +158,11 @@
 
     var termsRaw;
     pipe = p;
-    
+
     // all regions
     if (p == 0 || !(p in termsByRegion)) {
       termsRaw = _.flatten(termsByRegion);
-    } else { 
+    } else {
       termsRaw = termsByRegion[p];
     }
 
@@ -169,7 +170,7 @@
 
     // Update display
 
-    $selected = $("#region-select option[value='"+p+"']");
+    $selected = $("#region-select option[value='" + p + "']");
     $("#region-select").val(p);
     $("#region span").html($selected.html());
 
@@ -217,7 +218,7 @@
         e.preventDefault();
         setMatrix(col, row);
 
-        _gaq.push(['_trackEvent', 'Matrix', 'Change', (col+1) + 'x' + (row+1)]);
+        _gaq.push(['_trackEvent', 'Matrix', 'Change', (col + 1) + 'x' + (row + 1)]);
         updateURL();
 
 
@@ -259,7 +260,9 @@
       var compB = $(b).text().toUpperCase();
       return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
     });
-    $.each(items, function(k, v) { $regionSelect.append(v); });
+    $.each(items, function(k, v) {
+      $regionSelect.append(v);
+    });
 
     $regionSelect.change(function() {
       setRegion($(this).val());
@@ -270,7 +273,7 @@
     });
 
     function resetIdleTimeout() {
-      
+
       if (Modernizr.touch) return;
 
       clearTimeout(idleTimeout);
@@ -283,8 +286,8 @@
 
     // if (url.boolean('neat')) { 
 
-      // $('body *:not(#matrix-container)').remove();
-      // $('#matrix-container *:not(#matrix)').remove();
+    // $('body *:not(#matrix-container)').remove();
+    // $('#matrix-container *:not(#matrix)').remove();
 
     // }
 
@@ -310,23 +313,23 @@
   }
 
   function updateURL() {
-    
+
     var args = {};
-    if (rows != 0) args.r = rows+1;
-    if (cols != 0) args.c = cols+1;
+    if (rows != 0) args.r = rows + 1;
+    if (cols != 0) args.c = cols + 1;
     if (pipe != 0) args.p = pipe;
     if (url.hl) args.hl = url.hl;
 
     var str = [];
     _.each(args, function(v, k) {
-      str.push(k +'=' + v);
+      str.push(k + '=' + v);
     })
 
     str = str.join('&');
 
     if (Modernizr.history) {
       history.replaceState({}, '', '?' + str);
-    } else { 
+    } else {
       window.location = '?' + str;
     }
 
@@ -360,7 +363,7 @@
 
       if (col <= cols && row <= rows) {
         $(this).addClass(className);
-      } else { 
+      } else {
         $(this).removeClass(className);
       }
 
