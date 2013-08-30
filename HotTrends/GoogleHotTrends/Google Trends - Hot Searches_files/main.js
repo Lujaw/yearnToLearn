@@ -249,7 +249,6 @@
       $matrixSelectContainer.removeClass('showing');
     });
 
-
     var $regionSelect = $('#region-select');
     $('#region').prepend($regionSelect);
 

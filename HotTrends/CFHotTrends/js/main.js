@@ -3,7 +3,7 @@
 var visualizer = (function() {
 
 	//instance variables
-	var MAX_COLS = 5,
+	var MAX_COLS = 3,
 		FADE_DELAY = 10000,
 		FADE_DUR = 500,
 		wipers = [],
@@ -22,12 +22,21 @@ var visualizer = (function() {
 		initialize = function() {
 
 			console.log("initialized");
-			bindevents();
+
 
 			//create the matrix selector
 			matrixSelect = generateTable(MAX_COLS, MAX_COLS);
 			matrixSelect.id = 'matrix-select';
 			$matrixSelectContainer.prepend(matrixSelect);
+			bindevents();
+			createVisualization(MAX_COLS, MAX_COLS);
+		},
+
+		createVisualization = function(cols, rows) {
+			visualization = generateVisualization(cols, rows);
+			visualization.id = "visualization";
+			// document.getElementById('visualization').innerHTML = "";
+			document.getElementById('box_container').appendChild(visualization);
 		},
 
 		generateTable = function(rows, cols) {
@@ -57,12 +66,20 @@ var visualizer = (function() {
 		},
 		bindevents = function() {
 			console.log("events binded");
-			$('#matrix-button').bind('click', openMatrixSelect)
+			$('#matrix-select td').on('click', function() {
+
+				var no_cols = Math.sqrt($(".highlight").length);
+				setVisualization(no_cols, no_cols);
+			})
 			if (!Modernizr.touch) {
-				$('#matrix-button').bind('mouseenter', openMatrixSelect);
-				$('#matrix-button').bind('mouseout', closeMatrixSelect);
+				$('#matrix-button').on('mouseenter', openMatrixSelect);
+				$('#matrix-button').on('mouseout', closeMatrixSelect);
 			}
 
+			$matrixSelectContainer.on('mouseleave', function() {
+				matrixSelectShowing = false;
+				$matrixSelectContainer.removeClass('showing');
+			});
 			$(matrixSelect).find('td').each(function(k, v) {
 
 				var col = Math.floor(k / MAX_COLS);
@@ -97,8 +114,55 @@ var visualizer = (function() {
 				}
 
 			});
-		}
+		},
 
+		generateVisualization = function(rows, cols) {
+			console.log("generatedMatrix");
+			var m = document.createElement('div');
+
+			for (var r = 0; r < rows; r++) {
+				for (var c = 0; c < cols; c++) {
+
+					var cell = document.createElement('div');
+					cell.classList.add('cell');
+					m.appendChild(cell);
+
+				}
+			}
+
+			return m;
+
+		},
+
+		setVisualization = function(r, c) {
+			rows = Math.max(Math.min(r, MAX_COLS - 1), 0);
+			cols = Math.max(Math.min(c, MAX_COLS - 1), 0);
+
+			$(visualization).find('.cell').each(function(k, v) {
+
+				var col = Math.floor(k / MAX_COLS);
+				var row = k % MAX_COLS;
+
+				if (row > rows || col > cols) {
+					console.log("inside if");
+					// wipers[k].disabled = true;
+					// v.style.display = 'none';
+
+				} else {
+					console.log("inside else");
+					// Hm.
+					// if (wipers[k].disabled) wipers[k].onTransitionEnd();
+
+					// wipers[k].disabled = false;
+					v.style.top = (row) / (rows + 1) * 100 + '%';
+					v.style.left = (col) / (cols + 1) * 100 + '%';
+					v.style.width = 1 / (cols + 1) * 101 + '%'; // hack for 1px line that shows up
+					v.style.height = 1 / (rows + 1) * 101 + 'px';
+					v.style.display = 'block';
+				}
+
+			});
+		}
 
 	initialize();
 
