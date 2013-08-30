@@ -9,3 +9,47 @@
     to { width: 200px; }
 }
 
+	/* Set all the background positions, and hook up all the animations */
+	
+	/* Animation for Webkit */
+	@-webkit-keyframes digitSpin0 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -300px; }
+	}
+	@-webkit-keyframes digitSpin1 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -30px; }
+	}
+	@-webkit-keyframes digitSpin2 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -60px; }
+	}
+	@-webkit-keyframes digitSpin3 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -90px; }
+	}
+	@-webkit-keyframes digitSpin4 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -120px; }
+	}
+	@-webkit-keyframes digitSpin5 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -150px; }
+	}
+	@-webkit-keyframes digitSpin6 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -180px; }
+	}
+	@-webkit-keyframes digitSpin7 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -210px; }
+	}
+	@-webkit-keyframes digitSpin8 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -240px; }
+	}
+	@-webkit-keyframes digitSpin9 {
+	    from { background-position:0 0; }
+	    to { background-position:0 -270px; }
+	}
+	

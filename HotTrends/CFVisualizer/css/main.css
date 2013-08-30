@@ -24,3 +24,158 @@
 body {
     font-size: 40px;
 }
+.counter {
+     float:left;
+     padding:6px;
+     border-radius:5px;
+     background:#527F40;
+}
+.counter span {
+     float:left;
+     width:22px;
+     height:30px;
+     text-indent:-9999px;
+     font-size:0.0001em;
+     background-image:url(../images/counter-sprite.png);
+}
+.counter .digit-0 {
+    background-position:0 -300px;
+    animation-name: digitSpin0;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin0;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin0;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-1 {
+    background-position:0 -30px;
+    animation-name: digitSpin1;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin1;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin0;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-2 {
+    background-position:0 -60px;
+    animation-name: digitSpin2;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin2;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin2;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-3 {
+    background-position:0 -90px;
+    animation-name: digitSpin3;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin3;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin3;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count:1;
+}
+.counter .digit-4 {
+    background-position:0 -120px;
+    animation-name: digitSpin4;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin4;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin4;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-5 {
+    background-position:0 -150px;
+    animation-name: digitSpin5;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin5;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin5;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-6 {
+    background-position:0 -180px;
+    animation-name: digitSpin6;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin6;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin6;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-7 {
+    background-position:0 -210px;
+    animation-name: digitSpin7;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin7;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin7;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit-8 {
+    background-position:0 -240px;
+    animation-name: digitSpin8;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin8;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin8;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}
+.counter .digit- {
+    background-position:0 -270px;
+
+    animation-name: digitSpin9;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+
+    -webkit-animation-name: digitSpin9;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: 1;
+
+    -moz-animation-name: digitSpin9;
+    -moz-animation-duration: 3s;
+    -moz-animation-iteration-count: 1;
+}

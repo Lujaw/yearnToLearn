@@ -13,6 +13,8 @@ var visualizer = (function() {
 
 			});
 			animateColor();
+			loadJSON();
+			animateValue();
 			// responsiveText();
 		},
 
@@ -32,6 +34,7 @@ var visualizer = (function() {
 		animateColor = function() {
 			window.setInterval(function() {
 				randomColordiv();
+				// animateValue();
 			}, 2000);
 		},
 
@@ -44,6 +47,44 @@ var visualizer = (function() {
 			// 		maxFontSize: '60px'
 			// 	})
 			// });
+		},
+
+		loadJSON = function(obj) {
+			var cells = $(".gt-visible");
+			obj = [{
+				"label": "Testing",
+				"value": "123"
+			}, {
+				"label": "asdf",
+				"value": "12asd3"
+			}, {
+				"label": "Testing",
+				"value": "1asd23"
+			}, {
+				"label": "Testinasdg",
+				"value": "112323"
+			}]
+			cells.each(function(i, elem) {
+				$(elem).find("p").delay(100).html(function() {
+					var counter = '<div class="counter">\
+     <span class="digit-0"></span>\
+     <span class="digit-0"></span>\
+     <span class="digit-0"></span>\
+     <span class="digit-0"></span>\
+</div>';
+					var string = obj[i]["label"] + "<br/><br/>" + obj[i]["value"]
+					return string + counter;
+				});
+				console.log($(elem).find("p").html());
+
+			}),
+			animateValue = function() {
+				$(".counter span").each(function() {
+					var classname = "digit-" + parseInt(Math.random(0 - 9) * 10, 10);
+					$(this).removeClass("digit-0").addClass(classname);
+				});
+			}
+
 		}
 
 	initialize();
