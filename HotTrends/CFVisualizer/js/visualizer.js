@@ -9,10 +9,11 @@ var visualizer = (function() {
 			Grid.init({
 				transition: true,
 				speed: speed,
-				delay: delay
+				delay: delay,
+
 			});
 			animateColor();
-			responsiveText();
+			// responsiveText();
 		},
 
 		//create random colors in the div
@@ -36,13 +37,13 @@ var visualizer = (function() {
 
 		responsiveText = function() {
 			console.log("responsive called");
-		// $('.responsive-text').each(function() {
-		// 	console.log("fittext");
-		// 	$(this).fitText(1.2, {
-		// 		minFontSize: '40px',
-		// 		maxFontSize: '60px'
-		// 	})
-		// });
+			// $('.responsive-text').each(function() {
+			// 	console.log("fittext");
+			// 	$(this).fitText(1.2, {
+			// 		minFontSize: '40px',
+			// 		maxFontSize: '60px'
+			// 	})
+			// });
 		}
 
 	initialize();
