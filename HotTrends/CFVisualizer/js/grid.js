@@ -7,7 +7,9 @@ var Grid = (function() {
 			}
 		}
 		return a;
-	}
+	};
+
+	var gridChanged = false;
 
 	var config = {
 		items: Array.prototype.slice.call(document.querySelectorAll('#gt-grid > div')),
@@ -51,23 +53,12 @@ var Grid = (function() {
 				height = 100 / rows;
 
 			if (current_row < rows && current_column < columns) {
-				/* this seems to crash Safari 6 */
-				//if( Modernizr.csscalc ) {
-				//	el.style.width = '-webkit-calc(' + width + '% + 1px)';
-				//	el.style.height = '-webkit-calc(' + height + '% + 1px)';
-				//	el.style.width = '-moz-calc(' + width + '% + 1px)';
-				//	el.style.height = '-moz-calc(' + height + '% + 1px)';
-				//	el.style.width = 'calc(' + width + '% + 1px)';
-				//	el.style.height = 'calc(' + height + '% + 1px)';
-				//}
-				//else  {
+
 				el.style.width = width + .5 + '%';
 				el.style.height = height + .5 + '%';
-				//}
-
 				el.style.left = width * (current_column) + '%';
 				el.style.top = height * (current_row) + '%';
-
+				
 				classie.remove(el, 'gt-hidden');
 				classie.add(el, 'gt-visible');
 			} else {
@@ -75,10 +66,12 @@ var Grid = (function() {
 				classie.add(el, 'gt-hidden');
 			}
 		});
+		gridChanged = true;
 	}
 
 	return {
-		init: init
+		init: init,
+		gridChanged: gridChanged
 	};
 
 })();

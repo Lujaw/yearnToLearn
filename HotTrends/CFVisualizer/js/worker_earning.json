@@ -1,0 +1,101 @@
+workerEarning([{
+
+		"label": "Aashish Karki",
+		"value": "Rs. 4002.14"
+			},
+	{
+		"label": "Santosh Khanal",
+		"value": "Rs. 4001.44"
+			},
+	{
+		"label": "Bilif Khanal",
+		"value": "Rs. 4001.06"
+			},
+	{
+		"label": "Raghu Nath Neupane",
+		"value": "Rs. 4000.9"
+			},
+	{
+		"label": "Sanam Dongol",
+		"value": "Rs. 4000.85"
+			},
+	{
+		"label": "Raj Maharjan",
+		"value": "Rs. 4000.8"
+			},
+	{
+		"label": "Amrit Achhami",
+		"value": "Rs. 4000.77"
+			},
+	{
+		"label": "Subodh Jibi Ghimire",
+		"value": "Rs. 4000.74"
+			},
+	{
+		"label": "Jeshan Rai",
+		"value": "Rs. 4000.73"
+			},
+	{
+		"label": "Sunita Sanjhya",
+		"value": "Rs. 4000.71"
+			},
+	{
+		"label": "Kshitiz Shrestha",
+		"value": "Rs. 4000.64"
+			},
+	{
+		"label": "Deepshikha Khadgi",
+		"value": "Rs. 4000.59"
+			},
+	{
+		"label": "Aneel Shrestha",
+		"value": "Rs. 4000.57"
+			},
+	{
+		"label": "Bibechana Mahat",
+		"value": "Rs. 4000.45"
+			},
+	{
+		"label": "Eachhya Shrestha",
+		"value": "Rs. 4000.4"
+			},
+	{
+		"label": "Aditya Bhattarai",
+		"value": "Rs. 4000.37"
+			},
+	{
+		"label": "Prabin Maharjan",
+		"value": "Rs. 4000.34"
+			},
+	{
+		"label": "Rajeshwor Shrestha",
+		"value": "Rs. 4000.34"
+			},
+	{
+		"label": "Raju Kapali",
+		"value": "Rs. 4000.32"
+			},
+	{
+		"label": "Rohit Shahi",
+		"value": "Rs. 4000.17"
+			},
+	{
+		"label": "Manita Silwal",
+		"value": "Rs. 4000.11"
+			},
+	{
+		"label": "Shashi Shrestha",
+		"value": "Rs. 4000.06"
+			},
+	{
+		"label": "Kripa Sunuwar",
+		"value": "Rs. 4000.02"
+			},
+	{
+		"label": "Prem Dhoj Moktan",
+		"value": "Rs. 3917.79"
+			},
+	{
+		"label": "Saroj Maharjan",
+		"value": "Rs. 3886.86"
+			}]);
