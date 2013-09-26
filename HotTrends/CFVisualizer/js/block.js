@@ -1,36 +1,29 @@
 ;
 (function() {
-  console.log("block called");
-  var colors = ["#F0533F", "#089BD7", "#E9A13E", "#E8694F", "#B85B60", "#5D345A", "#4E9F67", "#4C6699", "#E7463E", "#9BC8C8",
-
-"#9BD28D", "#D1B461", "#56373C", "#B75959", "#659163", "#20A1D1", "#ECA830", "#CD3838", "#76AB26", "#D99B4B", "#C55235", "#B3611D", "#5A5F0A", "#7A194E", "#B5401E"
-],
-    transitions = {
-      fromBottom: {
-        before: [0, '100%'],
-        after: [0, '-100%'],
-        wrapper: [0, '4em']
-      },
-      fromTop: {
-        before: [0, '-100%'],
-        after: [0, '100%'],
-        wrapper: [0, '-4em']
-      },
-      fromLeft: {
-        before: ['-100%', 0],
-        after: ['100%', 0],
-        wrapper: ['-4em', 0]
-      },
-      fromRight: {
-        before: ['100%', 0],
-        after: ['-100%', 0],
-        wrapper: ['4em', 0]
-      }
-    };
+  transitions = {
+    fromBottom: {
+      before: [0, '100%'],
+      after: [0, '-100%'],
+      wrapper: [0, '4em']
+    },
+    fromTop: {
+      before: [0, '-100%'],
+      after: [0, '100%'],
+      wrapper: [0, '-4em']
+    },
+    fromLeft: {
+      before: ['-100%', 0],
+      after: ['100%', 0],
+      wrapper: ['-4em', 0]
+    },
+    fromRight: {
+      before: ['100%', 0],
+      after: ['-100%', 0],
+      wrapper: ['4em', 0]
+    }
+  };
 
   var Block = function(container) {
-
-    this.backgroundColors = colors;
 
     this.container = container;
 
@@ -74,13 +67,15 @@
 
 
   Block.prototype.show = function(str, onComplete) {
-    console.log("show reached");
     onComplete = onComplete || _.identity;
 
     // bandaid for whiteflash
-    this.backgroundColors = _.shuffle(this.backgroundColors);
-    this.container.style.backgroundColor = this.backgroundColors[Math.floor(Math.random() * this.backgroundColors.length)];
-    console.log(this.pane.domElement.style.backgroundColor);
+    this.container.style.backgroundColor = random_color();
+
+    // //create the array of the used colors
+    // unusedColors = _.without(unusedColors, this.container.style.backgroundColor);
+    // console.log("before", unusedColors, unusedColors.length);
+
 
     this.shown++;
 
@@ -93,6 +88,15 @@
       this.pane = this.a;
       this.oldPane = this.b;
     }
+
+
+    // //add the unused color into the array 
+    // console.log(this.oldPane.domElement.style.backgroundColor)
+    // if (this.oldPane.domElement.style.backgroundColor !== "") {
+    //   _.uniq(unusedColors.push(this.oldPane.domElement.style.backgroundColor));
+    // }
+    // console.log("after", unusedColors, unusedColors.length);
+
 
     // Check string for right-to-left characters
     this.pane.domElement.setAttribute('dir', 'ltr');
@@ -107,7 +111,7 @@
     this.selectRandomTransition();
     this.pane.wrapper.style.opacity = 1;
     this.pane.clear();
-    this.pane.domElement.style.backgroundColor = this.backgroundColors[this.shown % this.backgroundColors.length];
+    this.pane.domElement.style.backgroundColor = random_color();
     this.pane.domElement.style.zIndex = 1;
     this.pane.input.innerHTML = str;
 

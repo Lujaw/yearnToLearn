@@ -30,8 +30,8 @@
 
 	gridSelector.prototype = {
 		defaults: {
-			rows: 1,
-			columns: 1,
+			rows: 5,
+			columns: 5,
 			maxcolumns: 5,
 			onClick: function() {
 				return false;

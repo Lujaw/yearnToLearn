@@ -19,13 +19,8 @@ var visualizer = (function() {
 				delay: delay,
 
 			});
-			// animateColor();
 			getData();
-			// loadJSON();
 			initializeBlocks();
-			// animateValue();
-			// startAnimation();
-			// responsiveText();
 		},
 
 
@@ -49,10 +44,13 @@ var visualizer = (function() {
 					jsonpCallback: "workerEarning",
 					/* Unique function name */
 					success: function(jsonData) {
+
 						/* Do something with data */
-						console.log("before", data);
 						data = jsonData;
-						console.log("after", data);
+						//execute the initialize only once when the data is loaded..
+						(function() {
+							if (_.isEmpty(data)) initializeBlocks();
+						});
 
 					},
 					error: function() {
@@ -80,20 +78,16 @@ var visualizer = (function() {
 		cell.each(function() {
 			selectedColor = colors[Math.floor(Math.random() * colors.length)];
 			$(this).css("background-color", selectedColor);
-
 		});
 	},
 
 	startAnimation = function(block) {
-		console.log("Animation started ")
 		var delayedNext = function() {
-			console.log("delay called ")
 			block.timeout = setTimeout(block.next, Math.random() * 10 * WIPE_DELAY);
 		};
 
 		block.next = function() {
-			console.log("block changed");
-			// clearTimeout(block.timeout);
+			clearTimeout(block.timeout);
 			var paneString = data[++dataIndex % data.length]["label"] + '<br />' + data[dataIndex % data.length]["value"];
 			block.show(paneString, delayedNext);
 		};
@@ -102,15 +96,6 @@ var visualizer = (function() {
 
 	},
 
-	animateColor = function() {
-		window.setInterval(function() {
-			// randomColordiv();
-			// _.each(blocks, function(item){
-			// 	startAnimation(item)
-			// });
-			// animateValue();
-		}, 2000);
-	},
 
 	responsiveText = function() {
 		console.log("responsive called");
@@ -123,15 +108,6 @@ var visualizer = (function() {
 		// });
 	},
 
-	loadJSON = function(obj) {
-		//find all the input spans
-		var cells = $("span.input");
-
-
-
-		data = _.shuffle(_.uniq(data));
-
-	},
 	animateValue = function() {
 		$(".counter span").each(function() {
 			var classname = "digit-" + parseInt(Math.random(0 - 9) * 10, 10);
