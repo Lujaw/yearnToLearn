@@ -1,0 +1,31 @@
+doctype 5
+html(lang='en', ng-app='cfFormBuilder')
+
+  head
+    meta(charset='utf-8')
+    title cf-form-builder
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+    // build:css styles/screen.min.css
+    link(rel='stylesheet', href='styles/screen.css')
+    // endbuild
+
+  body
+    em(ng-show='showLoader') Loading...
+    ng-view(ng-hide='showLoader')
+
+    // build:js scripts/app.min.js
+    // Third parties.
+    script(src='lib/angular-unstable/angular.min.js')
+    script(src='lib/angular-resource/angular-resource.min.js')
+    script(src='lib/restangular/dist/restangular.min.js')
+    script(src='lib/lodash/dist/lodash.min.js')
+    // App Core.
+    script(src='scripts/app.js')
+    script(src='scripts/templates.js')
+    // Services.
+    // Controllers.
+    script(src='scripts/controllers/main.js')
+    // Directives.
+    // Filters.
+    // endbuild

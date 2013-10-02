@@ -1,0 +1,25 @@
+{
+  "app": {
+    "ngModule" : "cfFormBuilder",
+
+    "dev"  : ".dev",
+    "dist" : "dist",
+    "src"  : "app",
+    "test" : "test",
+
+    "assets": {
+      "bower"     : "lib",
+      "fonts"     : "fonts",
+      "images"    : "images",
+      "scripts"   : "scripts",
+      "styles"    : "styles",
+      "templates" : "templates"
+    },
+
+    "engines": {
+      "coffeeScript" : true,
+      "compass"      : true,
+      "jade"         : true
+    }
+  }
+}
