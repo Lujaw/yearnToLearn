@@ -1,0 +1,19 @@
+extends layout
+  
+block content
+  h1= title
+  p Welcome to the node app for the #{title}
+  h1 List of items
+  for todo in todos
+    p Item todo.index
+    p Description: #{todo.description}
+    p Due Date: #{todo.date}
+    p Done: #{todo.description}
+
+//- extends layout
+//- 
+//- block content
+  //- h1= title
+  //- p Welcome to node application for #{title}
+  //- p Description: todos[0].description
+  //- for todo in todos

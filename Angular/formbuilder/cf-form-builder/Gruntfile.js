@@ -2,14 +2,14 @@
 
 // Module dependencies.
 var livereloadSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-var path              = require('path');
+var path = require('path');
 
 // Mount folder to connect.
-var mountFolder = function (connect, dir) {
+var mountFolder = function(connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Load all Grunt tasks
   require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks);
@@ -23,15 +23,15 @@ module.exports = function (grunt) {
 
     // Clean folders before compile assets.
     clean: {
-      dev     : '<%= appConfig.app.dev %>',
-      dist    : '<%= appConfig.app.dist %>',
-      html    : '<%= appConfig.app.dev %>/**/*.html',
-      scripts : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
-      styles  : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.styles %>',
-      test    : '<%= appConfig.app.dev %>/<%= appConfig.app.test %>',
+      dev: '<%= appConfig.app.dev %>',
+      dist: '<%= appConfig.app.dist %>',
+      html: '<%= appConfig.app.dev %>/**/*.html',
+      scripts: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
+      styles: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.styles %>',
+      test: '<%= appConfig.app.dev %>/<%= appConfig.app.test %>',
 
-      options : {
-        force : true
+      options: {
+        force: true
       }
     },
 
@@ -40,23 +40,23 @@ module.exports = function (grunt) {
 
       // Compile Coffee for development environment.
       app: {
-        expand : true,
-        cwd    : '<%= appConfig.app.src %>/<%= appConfig.app.assets.scripts %>',
-        dest   : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
-        src    : '**/*.coffee',
-        ext    : '.js'
+        expand: true,
+        cwd: '<%= appConfig.app.src %>/<%= appConfig.app.assets.scripts %>',
+        dest: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
+        src: '**/*.coffee',
+        ext: '.js'
       },
 
       // Compile Coffee for tests.
       test: {
-        expand : true,
-        cwd    : '<%= appConfig.app.test %>',
-        dest   : '<%= appConfig.app.dev %>/<%= appConfig.app.test %>',
-        src    : '**/*.coffee',
-        ext    : '.js'
+        expand: true,
+        cwd: '<%= appConfig.app.test %>',
+        dest: '<%= appConfig.app.dev %>/<%= appConfig.app.test %>',
+        src: '**/*.coffee',
+        ext: '.js'
       }
     },
-    
+
 
     // Compile Compass.
     compass: {
@@ -64,44 +64,44 @@ module.exports = function (grunt) {
       // Compile Compass for development environment.
       dev: {
         options: {
-          debugInfo      : true,
-          cssDir         : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.styles %>',
-          fontsDir       : '<%= appConfig.app.src %>/<%= appConfig.app.assets.fonts %>',
-          httpFontsPath  : '../<%= appConfig.app.assets.fonts %>',
-          imagesDir      : '<%= appConfig.app.src %>/<%= appConfig.app.assets.images %>',
-          httpImagesPath : '../<%= appConfig.app.assets.images %>',
-          importPath     : '<%= appConfig.app.src %>/<%= appConfig.app.assets.lib %>',
-          javascriptsDir : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
-          sassDir        : '<%= appConfig.app.src %>/<%= appConfig.app.assets.styles %>'
+          debugInfo: true,
+          cssDir: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.styles %>',
+          fontsDir: '<%= appConfig.app.src %>/<%= appConfig.app.assets.fonts %>',
+          httpFontsPath: '../<%= appConfig.app.assets.fonts %>',
+          imagesDir: '<%= appConfig.app.src %>/<%= appConfig.app.assets.images %>',
+          httpImagesPath: '../<%= appConfig.app.assets.images %>',
+          importPath: '<%= appConfig.app.src %>/<%= appConfig.app.assets.lib %>',
+          javascriptsDir: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>',
+          sassDir: '<%= appConfig.app.src %>/<%= appConfig.app.assets.styles %>'
         }
       }
     },
-    
+
 
     // Start local server.
     connect: {
       dev: {
         options: {
-          port       : 3000,
-          hostname   : 'localhost',
-          middleware : function (connect) {
+          port: 3000,
+          hostname: 'localhost',
+          middleware: function(connect) {
             return [
               livereloadSnippet,
               mountFolder(connect, grunt.template.process('<%= appConfig.app.dev %>')),
               mountFolder(connect, grunt.template.process('<%= appConfig.app.src %>'))
-            ]
+              ]
           }
         }
       },
 
       dist: {
         options: {
-          port       : 3000,
-          hostname   : 'localhost',
-          middleware : function (connect) {
+          port: 3000,
+          hostname: 'localhost',
+          middleware: function(connect) {
             return [
               mountFolder(connect, grunt.template.process('<%= appConfig.app.dist %>'))
-            ]
+              ]
           }
         }
       }
@@ -111,20 +111,20 @@ module.exports = function (grunt) {
     copy: {
       dev: {
         files: [{
-          cwd    : '<%= appConfig.app.src %>',
-          dest   : '<%= appConfig.app.dev %>',
-          expand : true,
-          src    : [ '**/*' ]
+          cwd: '<%= appConfig.app.src %>',
+          dest: '<%= appConfig.app.dev %>',
+          expand: true,
+          src: ['**/*']
         }]
       },
 
       dist: {
         files: [{
-          cwd    : '<%= appConfig.app.dev %>',
-          dest   : '<%= appConfig.app.dist %>',
-          dot    : true,
-          expand : true,
-          src    : [
+          cwd: '<%= appConfig.app.dev %>',
+          dest: '<%= appConfig.app.dist %>',
+          dot: true,
+          expand: true,
+          src: [
             '**/*',
             '!test/**',
             '!**/lib/**',
@@ -141,21 +141,21 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          removeCommentsFromCDATA   : true,
-          collapseWhitespace        : true,
-          collapseBooleanAttributes : true,
-          removeAttributeQuotes     : true,
-          removeRedundantAttributes : true,
-          useShortDoctype           : true,
-          removeEmptyAttributes     : true,
-          removeOptionalTags        : true
+          removeCommentsFromCDATA: true,
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeAttributeQuotes: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeOptionalTags: true
         },
 
         files: [{
-          expand : true,
-          cwd    : '<%= appConfig.app.dist %>',
-          dest   : '<%= appConfig.app.dist %>',
-          src    : '**/*.html'
+          expand: true,
+          cwd: '<%= appConfig.app.dist %>',
+          dest: '<%= appConfig.app.dist %>',
+          src: '**/*.html'
         }]
       }
     },
@@ -164,37 +164,37 @@ module.exports = function (grunt) {
     jade: {
       dev: {
         files: {
-          '<%= appConfig.app.dev %>/' : '<%= appConfig.app.src %>/**/*.jade'
+          '<%= appConfig.app.dev %>/': '<%= appConfig.app.src %>/**/*.jade'
         }
       },
       options: {
-        basePath     : '<%= appConfig.app.src %>',
-        client       : false,
-        compileDebug : false,
-        pretty       : true
+        basePath: '<%= appConfig.app.src %>',
+        client: false,
+        compileDebug: false,
+        pretty: true
       }
     },
-    
+
 
     // Run unit tests.
     karma: {
       unit: {
-        configFile : 'config/unit.conf.js'
+        configFile: 'config/unit.conf.js'
       },
       continuous: {
-        configFile : 'config/unit.conf.js',
-        singleRun  : true,
-        browsers   : [ 'PhantomJS' ]
+        configFile: 'config/unit.conf.js',
+        singleRun: true,
+        browsers: ['PhantomJS']
       }
     },
 
     // Generate anotations for angular injections.
     ngmin: {
       dist: {
-        cwd    : '<%= appConfig.app.dist %>/<%= appConfig.app.assets.scripts %>',
-        expand : true,
-        src    : [ '**/*.js' ],
-        dest   : '<%= appConfig.app.dist %>/<%= appConfig.app.assets.scripts %>'
+        cwd: '<%= appConfig.app.dist %>/<%= appConfig.app.assets.scripts %>',
+        expand: true,
+        src: ['**/*.js'],
+        dest: '<%= appConfig.app.dist %>/<%= appConfig.app.assets.scripts %>'
       }
     },
 
@@ -202,11 +202,11 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          base   : '<%= appConfig.app.dev %>',
-          module : '<%= appConfig.app.ngModule %>'
+          base: '<%= appConfig.app.dev %>',
+          module: '<%= appConfig.app.ngModule %>'
         },
-        src  : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.templates %>/**/*.html',
-        dest : '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>/templates.js'
+        src: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.templates %>/**/*.html',
+        dest: '<%= appConfig.app.dev %>/<%= appConfig.app.assets.scripts %>/templates.js'
       }
     },
 
@@ -220,53 +220,53 @@ module.exports = function (grunt) {
     // Watch for changes in assets and compile.
     watch: {
       app: {
-        files   : '{<%= appConfig.app.dev %>,<%= appConfig.app.src %>}/**/*.{css,html,js,jpg,jpeg,png}',
-        options : {
-          livereload : true
+        files: '{<%= appConfig.app.dev %>,<%= appConfig.app.src %>}/**/*.{css,html,js,jpg,jpeg,png}',
+        options: {
+          livereload: true
         }
       },
       coffee: {
-        files   : '<%= appConfig.app.src %>/<%= appConfig.app.assets.scripts %>/**/*.coffee',
-        tasks   : 'compile:coffee',
-        options : {
-          livereload : true
+        files: '<%= appConfig.app.src %>/<%= appConfig.app.assets.scripts %>/**/*.coffee',
+        tasks: 'compile:coffee',
+        options: {
+          livereload: true
         }
       },
       compass: {
-        files   : '<%= appConfig.app.src %>/<%= appConfig.app.assets.styles %>/**/*.{sass,scss}',
-        tasks   : 'compile:compass',
-        options : {
-          livereload : true
+        files: '<%= appConfig.app.src %>/<%= appConfig.app.assets.styles %>/**/*.{sass,scss}',
+        tasks: 'compile:compass',
+        options: {
+          livereload: true
         }
       },
       jade: {
-        files   : '<%= appConfig.app.src %>/**/*.jade',
-        tasks   : 'compile:jade',
-        options : {
-          livereload : true
+        files: '<%= appConfig.app.src %>/**/*.jade',
+        tasks: 'compile:jade',
+        options: {
+          livereload: true
         }
       },
       karma: {
-        files   : '{<%= appConfig.app.dev %>/test,<%= appConfig.app.test %>}/**/*.js',
-        tasks   : 'karma:continuous'
+        files: '{<%= appConfig.app.dev %>/test,<%= appConfig.app.test %>}/**/*.js',
+        tasks: 'karma:continuous'
       },
       test: {
-        files : '<%= appConfig.app.test %>/**/*.coffee',
-        tasks : 'compile:coffeeTest'
+        files: '<%= appConfig.app.test %>/**/*.coffee',
+        tasks: 'compile:coffeeTest'
       }
     },
 
 
     // Use minified assets on HTML files depending on environment.
     usemin: {
-      html : [ '<%= appConfig.app.dist %>/**/*.html' ]
+      html: ['<%= appConfig.app.dist %>/**/*.html']
     },
 
     // Prepare usemin to compile assets in the specified order.
     useminPrepare: {
-      html    : '<%= appConfig.app.dev %>/**/*.html',
-      options : {
-        dest : '<%= appConfig.app.dist %>'
+      html: '<%= appConfig.app.dev %>/**/*.html',
+      options: {
+        dest: '<%= appConfig.app.dist %>'
       }
     }
   });
@@ -275,7 +275,7 @@ module.exports = function (grunt) {
   // -------------
 
   // Compile assets.
-  grunt.registerTask('compile', function (task) {
+  grunt.registerTask('compile', function(task) {
 
     if (task === undefined) {
       grunt.log.ok('Running all compilers.');
@@ -293,11 +293,11 @@ module.exports = function (grunt) {
     switch (task) {
       case 'coffee':
         cleaner = 'clean:scripts'
-        task    = 'coffee:app'
+        task = 'coffee:app'
         break;
       case 'coffeeTest':
         cleaner = 'clean:test'
-        task    = 'coffee:test'
+        task = 'coffee:test'
         break;
       case 'compass':
         cleaner = 'clean:styles'
@@ -314,7 +314,7 @@ module.exports = function (grunt) {
   });
 
   // Compress, concatenate, generate documentation and run unit tests.
-  grunt.registerTask('build', function () {
+  grunt.registerTask('build', function() {
 
     // Run all builder tasks.
     grunt.task.run([
@@ -336,7 +336,7 @@ module.exports = function (grunt) {
     // Passing the flag --preview, after the build a server will be started to
     // preview your build.
     if (grunt.option('preview')) {
-      grunt.task.run([ 'open', 'connect:dist:keepalive' ]);
+      grunt.task.run(['open', 'connect:dist:keepalive']);
     };
   });
 
